@@ -1,10 +1,21 @@
-import { LockKeyhole, Settings2 } from "lucide-react";
+import { ArrowLeft, LockKeyhole, Settings2 } from "lucide-react";
 import type { ReactNode } from "react";
 import { StyledSettingsCard } from "../styles/SettingsStyles";
 
-export function ConversationSettings({ children }: { children: ReactNode }) {
+interface ConversationSettingsProps {
+  children: ReactNode;
+  canReturn: boolean;
+  onReturn: () => void;
+}
+
+export function ConversationSettings({ children, canReturn, onReturn }: ConversationSettingsProps) {
   return (
     <StyledSettingsCard>
+      {canReturn && (
+        <button type="button" className="back-link" onClick={onReturn}>
+          <ArrowLeft size={15} /> Назад к чатам
+        </button>
+      )}
       <div className="state-icon">
         <Settings2 size={22} />
       </div>

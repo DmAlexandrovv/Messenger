@@ -58,6 +58,7 @@ function ChatApplication() {
             sending={chat.sending}
             scrollRef={chat.scrollRef}
             onSaveCredentials={chat.saveCredentials}
+            onCancelSettings={() => chat.setSettingsOpen(false)}
             onPhoneChange={chat.setPhoneInput}
             onCreateChat={chat.createChat}
             onDraftChange={chat.setDraft}
