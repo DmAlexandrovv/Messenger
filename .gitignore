@@ -1,2 +1,5 @@
 .idea
 tasks
+node_modules
+dist
+.playwright-cli
