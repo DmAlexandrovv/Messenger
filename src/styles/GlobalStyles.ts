@@ -22,6 +22,163 @@ const GlobalStyles = createGlobalStyle`
   --blue-dark: #2876dc;
 }
 
+@media (min-width: 761px) {
+  .topbar {
+    gap: 16px;
+    height: 52px;
+  }
+  .brand {
+    gap: 12px;
+    font-size: 24px;
+  }
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+  .service-label,
+  .settings-toggle {
+    font-size: 14px;
+  }
+  .settings-toggle {
+    padding: 10px 14px;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 1.4px;
+  }
+  .sidebar-top h1 {
+    font-size: 23px;
+  }
+  .icon-button {
+    width: 42px;
+    height: 42px;
+  }
+  .plus-mark {
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+  }
+  .sidebar-search {
+    height: 46px;
+    gap: 12px;
+    padding: 0 14px;
+  }
+  .sidebar-search input,
+  .chat-list-name,
+  .header-contact-name {
+    font-size: 16px;
+  }
+  .sidebar-blank p {
+    font-size: 17px;
+  }
+  .sidebar-blank > span,
+  .chat-list-preview {
+    font-size: 14px;
+  }
+  .sidebar-blank > button,
+  .start-chat-cta,
+  .primary-button {
+    font-size: 14px;
+  }
+  .contact-avatar {
+    width: 46px;
+    height: 46px;
+    font-size: 19px;
+  }
+  .chat-list-time,
+  .header-contact-state,
+  .setup-reminder,
+  .floating-status {
+    font-size: 12px;
+  }
+  .sidebar-bottom,
+  .compose-hint,
+  .date-divider span,
+  .feed-empty {
+    font-size: 13px;
+  }
+  .conversation-header {
+    height: 78px;
+    gap: 14px;
+    padding: 0 28px;
+  }
+  .header-avatar {
+    width: 48px;
+    height: 48px;
+  }
+  .conversation-empty h2 {
+    font-size: 32px;
+  }
+  .conversation-empty > p,
+  .state-copy {
+    font-size: 15px;
+  }
+  .start-chat-cta {
+    padding: 13px 18px;
+  }
+  .settings-state {
+    width: min(500px, 100%);
+    padding: 42px 38px;
+  }
+  .settings-state h2 {
+    font-size: 28px;
+  }
+  .settings-state > .state-icon {
+    width: 54px;
+    height: 54px;
+  }
+  .api-setup-note,
+  .api-setup-note code {
+    font-size: 12px;
+  }
+  .back-link {
+    font-size: 13px;
+  }
+  .phone-field,
+  .phone-field input {
+    font-size: 15px;
+  }
+  .phone-field,
+  .primary-button {
+    min-height: 48px;
+  }
+  .message-feed {
+    gap: 14px;
+    padding: 24px 34px 30px;
+  }
+  .message-bubble {
+    padding: 13px 16px 9px;
+    font-size: 16px;
+  }
+  .message-meta {
+    height: 16px;
+    font-size: 11px;
+  }
+  .compose-wrap {
+    padding: 0 30px 17px;
+  }
+  .composer {
+    min-height: 58px;
+    padding-left: 18px;
+  }
+  .composer textarea {
+    font-size: 15px;
+  }
+  .send-button {
+    width: 44px;
+    height: 44px;
+  }
+  .draft-count,
+  .compose-footnote {
+    font-size: 11px;
+  }
+  .toast {
+    max-width: min(520px, calc(100vw - 48px));
+    padding: 16px 18px;
+    font-size: 14px;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -897,6 +1054,45 @@ button:disabled {
   border-radius: 9px;
   background: var(--blue);
   color: white;
+}
+
+@media (min-width: 761px) {
+  .sidebar-bottom {
+    color: #737882;
+    font-size: 15px;
+  }
+
+  .sidebar-blank > span,
+  .chat-list-preview,
+  .state-copy,
+  .conversation-empty > p {
+    color: #737882;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .feed-empty {
+    gap: 10px;
+    color: #737882;
+    font-size: 17px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .compose-hint,
+  .chat-list-time,
+  .header-contact-state,
+  .setup-reminder,
+  .floating-status {
+    color: #737882;
+    font-size: 14px;
+  }
+
+  .sidebar-blank > button,
+  .primary-button,
+  .start-chat-cta {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 760px) {
