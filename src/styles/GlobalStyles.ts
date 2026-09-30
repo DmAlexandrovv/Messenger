@@ -1104,10 +1104,6 @@ button:disabled {
     font-size: 14px;
   }
 
-  .settings-state > .setup-reminder {
-    font-size: 14px;
-  }
-
   .eyebrow {
     font-size: 14px;
   }
