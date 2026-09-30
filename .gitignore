@@ -3,3 +3,4 @@ tasks
 node_modules
 dist
 .playwright-cli
+.claude

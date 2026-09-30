@@ -3,3 +3,6 @@ export interface GreenApiCredentials {
   apiTokenInstance: string;
   apiUrl: string;
 }
+
+export type InstanceState =
+  "authorized" | "notAuthorized" | "blocked" | "sleepMode" | "starting" | "suspended" | "yellowCard";

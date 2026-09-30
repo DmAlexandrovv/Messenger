@@ -17,6 +17,7 @@ import type { ChatMessage } from "../types/message";
 import type { ConversationScreen } from "../types/ui";
 import { SettingsForm } from "./SettingsForm";
 import { ConversationSettings } from "./ConversationSettings";
+import { onlyDigits } from "../services/credentials";
 
 interface ConversationPanelProps {
   screen: ConversationScreen;
@@ -42,6 +43,8 @@ interface ConversationPanelProps {
   onCreateNewChat: () => void;
   onCancelNewChat: () => void;
 }
+
+const PHONE_MAX_DIGITS = 15;
 
 export function ConversationPanel(props: ConversationPanelProps) {
   const formRef = useRef<HTMLFormElement>(null);
@@ -109,11 +112,14 @@ function NewChatScreen({ phone, connecting, disabled, onPhoneChange, onCreateCha
             <span>+</span>
             <input
               autoFocus
-              inputMode="tel"
+              inputMode="numeric"
               type="tel"
+              autoComplete="tel"
+              pattern="[0-9]*"
+              maxLength={PHONE_MAX_DIGITS}
               value={phone}
-              onChange={(event) => onPhoneChange(event.target.value)}
-              placeholder="+7 900 123-45-67"
+              onChange={(event) => onPhoneChange(onlyDigits(event.target.value, PHONE_MAX_DIGITS))}
+              placeholder="7 900 123 45 67"
               required
             />
           </div>
@@ -178,14 +184,6 @@ function ChatScreen({
           </div>
         </div>
         <div className="header-actions">
-          <button
-            type="button"
-            className="icon-button"
-            aria-label="Информация о чате"
-            onClick={() => onNotice(activePhone + " · Telegram")}
-          >
-            <MoreHorizontal size={20} />
-          </button>
           <button
             type="button"
             className="icon-button close-chat-button"

@@ -32,6 +32,21 @@ export const Input = styled.input`
     box-shadow: 0 0 0 3px #3988ef14;
     border-color: #90bdf3;
   }
+
+  &[aria-invalid="true"] {
+    border-color: #e3766f;
+  }
+
+  &[aria-invalid="true"]:focus {
+    box-shadow: 0 0 0 3px #e3766f1f;
+  }
+`;
+
+export const FieldError = styled.span`
+  margin: -3px 0 0;
+  color: #d4544c;
+  font-size: 13px;
+  font-weight: 500;
 `;
 
 export const InputWithAction = styled.div`

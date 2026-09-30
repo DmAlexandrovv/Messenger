@@ -1,6 +1,15 @@
 import { endpoint } from "./endpoint";
-import type { GreenApiCredentials } from "../types/greenApi";
+import type { GreenApiCredentials, InstanceState } from "../types/greenApi";
 import type { IncomingTextNotification } from "../types/notification";
+
+function statusMessage(status: number): string {
+  if (status === 401) return "Неверный токен или ID инстанса.";
+  if (status === 403) return "Неверный ID инстанса (idInstance) или адрес API.";
+  if (status === 429) return "Слишком много запросов к GREEN-API. Повторите чуть позже.";
+  if (status === 466) return "Превышены лимиты тарифа инстанса GREEN-API.";
+  if (status >= 500) return "GREEN-API временно недоступен. Повторите попытку позже.";
+  return "GREEN-API вернул ошибку " + status + ".";
+}
 
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
   let response: Response;
@@ -15,10 +24,16 @@ async function request<T>(url: string, init?: RequestInit): Promise<T> {
   if (!response.ok) {
     const apiError = payload as { message?: string; error?: string; reason?: string; details?: string } | null;
     const detail = apiError?.message ?? apiError?.error ?? apiError?.reason ?? apiError?.details;
-    throw new Error(detail ? "GREEN-API: " + detail : "GREEN-API вернул ошибку " + response.status + ".");
+    throw new Error(detail ? "GREEN-API: " + detail : statusMessage(response.status));
   }
 
   return payload as T;
+}
+
+export async function getInstanceState(credentials: GreenApiCredentials, signal?: AbortSignal): Promise<InstanceState> {
+  const result = await request<{ stateInstance?: string }>(endpoint(credentials, "getStateInstance"), { signal });
+  if (!result?.stateInstance) throw new Error("GREEN-API не вернул состояние инстанса.");
+  return result.stateInstance as InstanceState;
 }
 
 export async function findTelegramChat(

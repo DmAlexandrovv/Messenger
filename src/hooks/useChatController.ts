@@ -122,7 +122,7 @@ export function useChatController() {
     if (!credentials || connecting) return;
     const normalizedPhone = phoneInput.replace(/\D/g, "");
     if (normalizedPhone.length < 7 || normalizedPhone.length > 15) {
-      setError("Введите номер в международном формате, например +7 900 123-45-67.");
+      setError("Введите номер в международном формате цифрами, например 79001234567.");
       return;
     }
     setConnecting(true);
