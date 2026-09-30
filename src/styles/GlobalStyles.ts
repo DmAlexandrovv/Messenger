@@ -130,10 +130,6 @@ const GlobalStyles = createGlobalStyle`
     width: 54px;
     height: 54px;
   }
-  .api-setup-note,
-  .api-setup-note code {
-    font-size: 12px;
-  }
   .back-link {
     font-size: 13px;
   }
@@ -715,20 +711,6 @@ button:disabled {
 .primary-button:disabled {
   opacity: 0.65;
 }
-.api-setup-note {
-  margin: 17px 0 0;
-  padding: 11px 12px;
-  border: 1px solid #edf0f4;
-  border-radius: 8px;
-  background: #fafbfd;
-  color: #9298a2;
-  font-size: 9px;
-  line-height: 1.7;
-}
-.api-setup-note code {
-  color: #64748b;
-  font-size: 9px;
-}
 .new-chat-state {
   padding-top: 39px;
 }
@@ -1121,15 +1103,6 @@ button:disabled {
   }
 
   .settings-state > .eyebrow {
-    font-size: 14px;
-  }
-
-  .settings-state > .api-setup-note {
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .settings-state > .api-setup-note code {
     font-size: 14px;
   }
 

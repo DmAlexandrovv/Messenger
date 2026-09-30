@@ -215,6 +215,5 @@ export function useChatController() {
     sendMessage,
     resetChat,
     clearNotification,
-    setError,
   };
 }

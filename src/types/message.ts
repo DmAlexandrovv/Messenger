@@ -7,9 +7,3 @@ export interface ChatMessage {
   timestamp: number;
   pending?: boolean;
 }
-
-export interface ChatContact {
-  chatId: string;
-  phone: string;
-  name: string;
-}

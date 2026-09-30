@@ -1,4 +1,4 @@
-import { Component, useState, type ErrorInfo, type ReactNode } from "react";
+import { Component, type ErrorInfo, type ReactNode } from "react";
 import { AppHeader } from "./components/AppHeader";
 import { ChatSidebar } from "./components/ChatSidebar";
 import { ConnectionStatus } from "./components/ConnectionStatus";
@@ -18,7 +18,6 @@ function getScreen(connected: boolean, showNewChat: boolean, chatId: string): Co
 
 function ChatApplication() {
   const chat = useChatController();
-  const [noticeOverride, setNoticeOverride] = useState("");
   const screen = getScreen(Boolean(chat.credentials), chat.showNewChat, chat.chatId);
 
   return (
@@ -64,19 +63,11 @@ function ChatApplication() {
             onResetChat={chat.resetChat}
             onBack={() => chat.setMobileChatOpen(false)}
             onCancelNewChat={() => chat.setShowNewChat(false)}
-            onNotice={setNoticeOverride}
             onCreateNewChat={() => chat.setShowNewChat(true)}
           />
         </ChatLayout>
 
-        <ToastNotice
-          error={chat.error || chat.receiveError}
-          notice={noticeOverride || chat.notice}
-          onDismiss={() => {
-            chat.clearNotification();
-            setNoticeOverride("");
-          }}
-        />
+        <ToastNotice error={chat.error || chat.receiveError} notice={chat.notice} onDismiss={chat.clearNotification} />
         <ConnectionStatus chatId={chat.chatId} isReceiving={chat.isReceiving} />
       </AppShell>
     </>

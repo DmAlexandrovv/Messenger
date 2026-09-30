@@ -2,14 +2,14 @@ import type { GreenApiCredentials } from "../types/greenApi";
 
 export const ID_INSTANCE_MAX_DIGITS = 20;
 
-export type ValidatedField = "idInstance" | "apiUrl";
+type ValidatedField = "idInstance" | "apiUrl";
 export type CredentialsErrors = Partial<Record<ValidatedField, string>>;
 
 export function onlyDigits(value: string, maxLength: number): string {
   return value.replace(/\D/g, "").slice(0, maxLength);
 }
 
-export function normalizeApiUrl(value: string): string {
+function normalizeApiUrl(value: string): string {
   const trimmed = value.trim().replace(/\/+$/, "");
   if (!trimmed || /^[a-z][a-z\d+.-]*:\/\//i.test(trimmed)) return trimmed;
   return "https://" + trimmed;

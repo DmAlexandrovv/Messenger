@@ -6,7 +6,6 @@ import {
   CheckCheck,
   LockKeyhole,
   MessageCircle,
-  MoreHorizontal,
   Send,
   Sparkles,
   X,
@@ -39,7 +38,6 @@ interface ConversationPanelProps {
   onSendMessage: (event: FormEvent<HTMLFormElement>) => void;
   onResetChat: () => void;
   onBack: () => void;
-  onNotice: (notice: string) => void;
   onCreateNewChat: () => void;
   onCancelNewChat: () => void;
 }
@@ -167,7 +165,6 @@ function ChatScreen({
   onSendMessage,
   onResetChat,
   onBack,
-  onNotice,
 }: ChatScreenProps) {
   return (
     <>
