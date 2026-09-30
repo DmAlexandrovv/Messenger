@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { ArrowUpRight, LockKeyhole } from "lucide-react";
+import { ArrowUpRight, Eye, EyeOff, LockKeyhole } from "lucide-react";
 import type { GreenApiCredentials } from "../types/greenApi";
 import {
   Field,
@@ -19,7 +19,7 @@ interface SettingsFormProps {
 export function SettingsForm({ initialCredentials, onSave }: SettingsFormProps) {
   const [idInstance, setIdInstance] = useState(initialCredentials?.idInstance ?? "");
   const [apiTokenInstance, setApiTokenInstance] = useState(initialCredentials?.apiTokenInstance ?? "");
-  const [apiUrl, setApiUrl] = useState(initialCredentials?.apiUrl ?? "https://api.green-api.com");
+  const [apiUrl, setApiUrl] = useState(initialCredentials?.apiUrl ?? "");
   const [showToken, setShowToken] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -52,15 +52,16 @@ export function SettingsForm({ initialCredentials, onSave }: SettingsFormProps) 
             type={showToken ? "text" : "password"}
             value={apiTokenInstance}
             onChange={(event) => setApiTokenInstance(event.target.value)}
-            placeholder="Ваш apiTokenInstance"
+            placeholder="8asd8asd7321ek..."
             required
           />
           <FieldAction
             type="button"
             aria-label={showToken ? "Скрыть токен" : "Показать токен"}
+            title={showToken ? "Скрыть токен" : "Показать токен"}
             onClick={() => setShowToken((value) => !value)}
           >
-            {showToken ? "Скрыть" : "Показать"}
+            {showToken ? <EyeOff size={18} /> : <Eye size={18} />}
           </FieldAction>
         </InputWithAction>
       </Field>

@@ -32,7 +32,6 @@ interface ConversationPanelProps {
   sending: boolean;
   scrollRef: RefObject<HTMLDivElement | null>;
   onSaveCredentials: (credentials: GreenApiCredentials) => void;
-  onCancelSettings: () => void;
   onPhoneChange: (phone: string) => void;
   onCreateChat: (event: FormEvent<HTMLFormElement>) => void;
   onDraftChange: (draft: string) => void;
@@ -62,7 +61,7 @@ export function ConversationPanel(props: ConversationPanelProps) {
       aria-label="Переписка"
     >
       {props.screen === "settings" && (
-        <ConversationSettings canReturn={Boolean(props.credentials)} onReturn={props.onCancelSettings}>
+        <ConversationSettings>
           <SettingsForm initialCredentials={props.credentials} onSave={props.onSaveCredentials} />
         </ConversationSettings>
       )}
@@ -247,7 +246,7 @@ function ChatScreen({
           </button>
         </form>
         <p className="compose-footnote">
-          Enter — отправить <span>·</span> Shift + Enter — новая строка
+          Enter - отправить <span>·</span> Shift + Enter - новая строка
         </p>
       </div>
     </>

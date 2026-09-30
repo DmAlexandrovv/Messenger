@@ -9,8 +9,8 @@ import { AppShell, ChatLayout } from "./styles/LayoutStyles";
 import GlobalStyles from "./styles/GlobalStyles";
 import type { ConversationScreen } from "./types/ui";
 
-function getScreen(settingsOpen: boolean, showNewChat: boolean, chatId: string): ConversationScreen {
-  if (settingsOpen) return "settings";
+function getScreen(connected: boolean, showNewChat: boolean, chatId: string): ConversationScreen {
+  if (!connected) return "settings";
   if (showNewChat) return "new-chat";
   if (chatId) return "chat";
   return "empty";
@@ -19,30 +19,29 @@ function getScreen(settingsOpen: boolean, showNewChat: boolean, chatId: string):
 function ChatApplication() {
   const chat = useChatController();
   const [noticeOverride, setNoticeOverride] = useState("");
-  const screen = getScreen(chat.settingsOpen, chat.showNewChat, chat.chatId);
+  const screen = getScreen(Boolean(chat.credentials), chat.showNewChat, chat.chatId);
 
   return (
     <>
       <GlobalStyles />
       <AppShell>
-        <AppHeader
-          connected={Boolean(chat.credentials)}
-          onSettingsClick={() => chat.setSettingsOpen((open) => !open)}
-        />
+        <AppHeader connected={Boolean(chat.credentials)} onLogout={chat.logout} />
 
-        <ChatLayout aria-label="Чат Telegram">
-          <ChatSidebar
-            contactName={chat.contactName}
-            activePhone={chat.activePhone}
-            chatId={chat.chatId}
-            messages={chat.messages}
-            mobileHidden={chat.mobileChatOpen}
-            onNewChat={() => {
-              chat.setShowNewChat(true);
-              chat.clearNotification();
-            }}
-            onOpenChat={() => chat.setMobileChatOpen(true)}
-          />
+        <ChatLayout className={!chat.credentials ? "chat-layout auth-layout" : undefined} aria-label="Чат Telegram">
+          {chat.credentials && (
+            <ChatSidebar
+              contactName={chat.contactName}
+              activePhone={chat.activePhone}
+              chatId={chat.chatId}
+              messages={chat.messages}
+              mobileHidden={chat.mobileChatOpen}
+              onNewChat={() => {
+                chat.setShowNewChat(true);
+                chat.clearNotification();
+              }}
+              onOpenChat={() => chat.setMobileChatOpen(true)}
+            />
+          )}
 
           <ConversationPanel
             screen={screen}
@@ -58,7 +57,6 @@ function ChatApplication() {
             sending={chat.sending}
             scrollRef={chat.scrollRef}
             onSaveCredentials={chat.saveCredentials}
-            onCancelSettings={() => chat.setSettingsOpen(false)}
             onPhoneChange={chat.setPhoneInput}
             onCreateChat={chat.createChat}
             onDraftChange={chat.setDraft}

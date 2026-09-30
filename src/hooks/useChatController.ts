@@ -45,7 +45,6 @@ function errorMessage(error: unknown): string {
 
 export function useChatController() {
   const [credentials, setCredentials] = useState(readCredentials);
-  const [settingsOpen, setSettingsOpen] = useState(() => !readCredentials());
   const [phoneInput, setPhoneInput] = useState("");
   const [activePhone, setActivePhone] = useState("");
   const [chatId, setChatId] = useState("");
@@ -93,9 +92,29 @@ export function useChatController() {
       return;
     }
     setCredentials(next);
-    setSettingsOpen(false);
     setError("");
-    setNotice("Подключение настроено — можно создать чат.");
+    setNotice("Подключение настроено - можно создать чат.");
+  }
+
+  function logout() {
+    try {
+      localStorage.removeItem(SETTINGS_KEY);
+    } catch {
+      setError("Не удалось удалить настройки из локального хранилища браузера.");
+      return;
+    }
+
+    setCredentials(null);
+    setPhoneInput("");
+    setActivePhone("");
+    setChatId("");
+    setContactName("");
+    setMessages([]);
+    setDraft("");
+    setShowNewChat(false);
+    setMobileChatOpen(false);
+    setError("");
+    setNotice("");
   }
 
   async function createChat(event: FormEvent<HTMLFormElement>) {
@@ -171,8 +190,6 @@ export function useChatController() {
 
   return {
     credentials,
-    settingsOpen,
-    setSettingsOpen,
     phoneInput,
     setPhoneInput,
     activePhone,
@@ -193,6 +210,7 @@ export function useChatController() {
     isReceiving,
     scrollRef,
     saveCredentials,
+    logout,
     createChat,
     sendMessage,
     resetChat,

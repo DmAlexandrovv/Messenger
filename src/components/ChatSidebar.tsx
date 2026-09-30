@@ -34,7 +34,9 @@ export function ChatSidebar({
         </div>
         <button type="button" className="icon-button new-chat-button" aria-label="Новый чат" onClick={onNewChat}>
           <MessageCircle size={18} />
-          <span className="plus-mark">+</span>
+          <span className="plus-mark" aria-hidden="true">
+            +
+          </span>
         </button>
       </div>
 

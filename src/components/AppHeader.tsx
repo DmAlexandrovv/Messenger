@@ -1,12 +1,12 @@
-import { ArrowUpRight, Settings2 } from "lucide-react";
+import { ArrowUpRight, LogOut } from "lucide-react";
 import type { ReactNode } from "react";
 
 interface AppHeaderProps {
   connected: boolean;
-  onSettingsClick: () => void;
+  onLogout: () => void;
 }
 
-export function AppHeader({ connected, onSettingsClick }: AppHeaderProps): ReactNode {
+export function AppHeader({ connected, onLogout }: AppHeaderProps): ReactNode {
   return (
     <header className="topbar">
       <a className="brand" href="/" aria-label="Telegram через GREEN-API">
@@ -20,9 +20,9 @@ export function AppHeader({ connected, onSettingsClick }: AppHeaderProps): React
       <span className="service-label">через GREEN-API</span>
       <div className="topbar-spacer" />
       {connected && (
-        <button type="button" className="settings-toggle" onClick={onSettingsClick} aria-label="Настройки подключения">
-          <Settings2 size={17} />
-          <span>Подключение</span>
+        <button type="button" className="settings-toggle" onClick={onLogout} aria-label="Выйти из подключения">
+          <LogOut size={17} />
+          <span>Выйти</span>
         </button>
       )}
       <span

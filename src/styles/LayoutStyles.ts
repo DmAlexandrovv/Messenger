@@ -26,6 +26,10 @@ export const ChatLayout = styled.section.attrs({ className: "chat-layout" })`
   background: #fff;
   box-shadow: 0 14px 48px rgb(33 42 58 / 5%);
 
+  &.auth-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   @media (max-width: 760px) {
     position: relative;
     display: block;

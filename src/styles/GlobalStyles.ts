@@ -23,6 +23,10 @@ const GlobalStyles = createGlobalStyle`
 }
 
 @media (min-width: 761px) {
+  :root {
+    font-size: 16px;
+  }
+
   .topbar {
     gap: 16px;
     height: 52px;
@@ -109,8 +113,7 @@ const GlobalStyles = createGlobalStyle`
   .conversation-empty h2 {
     font-size: 32px;
   }
-  .conversation-empty > p,
-  .state-copy {
+  .conversation-empty > p {
     font-size: 15px;
   }
   .start-chat-cta {
@@ -337,9 +340,28 @@ button:disabled {
   border-radius: 50%;
   background: var(--blue);
   color: white;
-  font:
-    500 10px "DM Sans",
-    sans-serif;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0;
+  transform: translateX(1px);
+}
+.plus-mark::before,
+.plus-mark::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  border-radius: 1px;
+  background: white;
+  content: "";
+}
+.plus-mark::before {
+  width: 6px;
+  height: 1.5px;
+}
+.plus-mark::after {
+  width: 1.5px;
+  height: 6px;
 }
 .sidebar-search {
   display: flex;
@@ -638,7 +660,7 @@ button:disabled {
 .state-copy {
   margin: 9px 0 23px;
   color: #9398a1;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.7;
 }
 .new-chat-form {
@@ -1062,9 +1084,13 @@ button:disabled {
     font-size: 15px;
   }
 
+  .new-chat-state > .state-copy,
+  .new-chat-form > label {
+    font-size: 15px;
+  }
+
   .sidebar-blank > span,
   .chat-list-preview,
-  .state-copy,
   .conversation-empty > p {
     color: #737882;
     font-size: 16px;
@@ -1091,6 +1117,55 @@ button:disabled {
   .sidebar-blank > button,
   .primary-button,
   .start-chat-cta {
+    font-size: 16px;
+  }
+
+  .settings-state > .eyebrow {
+    font-size: 14px;
+  }
+
+  .settings-state > .api-setup-note {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .settings-state > .api-setup-note code {
+    font-size: 14px;
+  }
+
+  .settings-state > .setup-reminder {
+    font-size: 14px;
+  }
+
+  .eyebrow {
+    font-size: 14px;
+  }
+
+  .plus-mark {
+    font-size: 0;
+  }
+
+  .chat-list-preview,
+  .sidebar-blank > span {
+    font-size: 16px;
+  }
+
+  .chat-list-time,
+  .date-divider span,
+  .message-meta,
+  .draft-count,
+  .compose-footnote,
+  .setup-reminder {
+    font-size: 13px;
+  }
+
+  .compose-hint,
+  .floating-status,
+  .header-contact-state {
+    font-size: 15px;
+  }
+
+  .toast {
     font-size: 16px;
   }
 }

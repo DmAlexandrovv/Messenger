@@ -7,22 +7,22 @@ export const SettingsFormRoot = styled.form`
 
 export const Field = styled.label`
   display: grid;
-  gap: 7px;
+  gap: 9px;
   color: #626771;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 `;
 
 export const Input = styled.input`
   width: 100%;
-  height: 39px;
-  padding: 0 11px;
+  height: 48px;
+  padding: 0 14px;
   border: 1px solid #e6e8ec;
   border-radius: 8px;
   outline: 0;
   background: #fff;
   color: #34383f;
-  font-size: 11px;
+  font-size: 15px;
 
   &::placeholder {
     color: #b5b9c0;
@@ -46,11 +46,15 @@ export const FieldAction = styled.button`
   position: absolute;
   top: 50%;
   right: 9px;
+  display: grid;
+  width: 36px;
+  height: 36px;
   transform: translateY(-50%);
+  place-items: center;
   border: 0;
   background: transparent;
   color: #7c9fc9;
-  font-size: 9px;
+  cursor: pointer;
 `;
 
 export const PrivacyNote = styled.p`
@@ -59,7 +63,7 @@ export const PrivacyNote = styled.p`
   gap: 6px;
   margin: -1px 0 0;
   color: #9ca1aa;
-  font-size: 9px;
+  font-size: 13px;
 
   svg {
     color: #7daada;
@@ -68,7 +72,7 @@ export const PrivacyNote = styled.p`
 
 export const PrimaryButton = styled.button`
   display: inline-flex;
-  min-height: 40px;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -77,7 +81,7 @@ export const PrimaryButton = styled.button`
   border-radius: 8px;
   background: #3988ef;
   color: #fff;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 600;
   transition: background 0.15s;
 
